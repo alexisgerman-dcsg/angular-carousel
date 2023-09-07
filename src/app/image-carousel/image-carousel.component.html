@@ -1,0 +1,9 @@
+<div class="horizontal-scroll-container">
+  <button class="scroll-button left" (click)="scrollList('left')"><mat-icon>chevron_left</mat-icon></button>
+  <div class="scrollable-list">
+    <ul>
+      <li *ngFor="let item of items">{{ item }}</li>
+    </ul>
+  </div>
+  <button class="scroll-button right" (click)="scrollList('right')"></button>
+</div>

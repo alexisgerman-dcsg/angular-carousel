@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 })
 export class ImageCarousel {
   items = [{ title: 'Slide 1' }, { title: 'Slide 2' }, { title: 'Slide 3' }];
+  images = [700, 800, 807].map((n) => `https://picsum.photos/id/${n}/900/500`);
   
   scrollList(direction: 'left' | 'right'): void {
     const container = document.querySelector('.scrollable-list');

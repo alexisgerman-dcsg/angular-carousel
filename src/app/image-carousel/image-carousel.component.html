@@ -1,9 +1,13 @@
 <div class="horizontal-scroll-container">
-  <button class="scroll-button left" (click)="scrollList('left')"><mat-icon>chevron_left</mat-icon></button>
+  <button mat-icon-button class="scroll-button" (click)="scrollList('left')"><mat-icon>chevron_left</mat-icon></button>
   <div class="scrollable-list">
     <ul>
-      <li *ngFor="let item of items">{{ item }}</li>
+      <li *ngFor="let image of images">
+        <img [src]="image" class="element" alt="Random first slide">
+      </li>
     </ul>
   </div>
-  <button class="scroll-button right" (click)="scrollList('right')"></button>
+  <button mat-icon-button class="scroll-button" (click)="scrollList('right')">
+    <mat-icon>chevron_right</mat-icon>
+  </button>
 </div>

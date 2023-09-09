@@ -1,13 +1,21 @@
 <div class="horizontal-scroll-container">
-  <button mat-icon-button class="scroll-button" (click)="scrollList('left')"><mat-icon>chevron_left</mat-icon></button>
-  <div class="scrollable-list">
+  <a class="scroll-button" 
+  (click)="scrollList('left')"
+  [hidden]="buttonLeft && !scrollAvailable"
+  >
+    <mat-icon>chevron_left</mat-icon>
+</a>
+  <div class="scrollable-list" #scrollableList>
     <ul>
       <li *ngFor="let image of images">
-        <img [src]="image" class="element" alt="Random first slide">
+        <img [src]="image" (click)="openReviewModal()" class="element" alt="Random first slide">
       </li>
     </ul>
   </div>
-  <button mat-icon-button class="scroll-button" (click)="scrollList('right')">
+  <a mat-icon-button class="scroll-button" 
+  (click)="scrollList('right')"
+    [hidden]="!stateScroll"
+  [disabled]="buttonRight && !scrollAvailable">
     <mat-icon>chevron_right</mat-icon>
-  </button>
+  </a>
 </div>

@@ -1,10 +1,11 @@
 <div class="horizontal-scroll-container">
-  <a class="scroll-button" 
-  (click)="scrollList('left')"
-  [hidden]="buttonLeft && !scrollAvailable"
-  >
-    <mat-icon>chevron_left</mat-icon>
-</a>
+  <div [hidden]="buttonLeft">
+    <button mat-icon-button class="scroll-button" 
+    (click)="scrollList('left')"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+  </div>
   <div class="scrollable-list" #scrollableList>
     <ul>
       <li *ngFor="let image of images">
@@ -12,10 +13,12 @@
       </li>
     </ul>
   </div>
-  <a mat-icon-button class="scroll-button" 
-  (click)="scrollList('right')"
-    [hidden]="!stateScroll"
-  [disabled]="buttonRight && !scrollAvailable">
-    <mat-icon>chevron_right</mat-icon>
-  </a>
+  <div [hidden]="buttonRight">
+    <button mat-icon-button class="scroll-button" 
+    (click)="scrollList('right')"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+  
 </div>

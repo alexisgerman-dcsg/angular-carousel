@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -9,35 +9,54 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 })
 export class ImageCarousel {
   images = [700, 800, 807].map((n) => `https://picsum.photos/id/${n}/900/500`);
-  buttonLeft: boolean = false;
-  buttonRight: boolean = true;
-  scrollAvailable: boolean = false;
+  
+  buttonLeft: boolean = true;
+  buttonRight: boolean = false;
   @ViewChild('scrollableList') scrollableList!: ElementRef;
 
+  constructor() {}
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    // Aquí puedes realizar acciones cuando cambie el tamaño de la pantalla
+    // event.target contiene la ventana (window) que cambió de tamaño
+    console.log('La pantalla cambió de tamaño.');
+    console.log(this.isHorizontalScrollAvailable())
+
+  }
+
   ngAfterViewInit() {
-    const scrollableList = this.scrollableList.nativeElement;
-    if (scrollableList.scrollWidth > scrollableList.clientWidth) {
-      scrollableList.addEventListener('scroll', this.onScroll.bind(this));
-      this.scrollAvailable = true;
-    }
+    // Establece el HostListener en el elemento con la ID #scrollableList
+    this.scrollableList.nativeElement.addEventListener('scroll', this.onScroll.bind(this));
+    setTimeout(() => {
+      console.log(this.isHorizontalScrollAvailable())
+      if (this.isHorizontalScrollAvailable()) {
+        this.buttonLeft = true;
+        this.buttonRight = true;
+      }
+    });
+    
   }
 
   onScroll(event: Event) {
     const scrollableList = event.target as HTMLElement;
 
-    if (scrollableList.scrollWidth > scrollableList.clientWidth) {
-      console.log('Scrool hidden')
-    }
+    // Si el scroll llega al principio
     if (scrollableList.scrollLeft === 0) {
-      console.log('Estás en la posición inicial.');
       this.buttonLeft = true;
-    }
-    if (scrollableList.scrollLeft + scrollableList.clientWidth >= scrollableList.scrollWidth) {
-      console.log('Estás en la posición final.');
       this.buttonRight = false;
+      console.log('Estás en la posición inicial.');
+      // Puedes ejecutar acciones específicas aquí
+    }
+
+    // Si el scroll llega al final
+    if (scrollableList.scrollLeft + scrollableList.clientWidth >= scrollableList.scrollWidth) {
+      this.buttonLeft = false;
+      this.buttonRight = true;
+      console.log('Estás en la posición final.');
+      // Puedes ejecutar acciones específicas aquí
     }
   }
-
 
   scrollList(direction: 'left' | 'right'): void {
     const container = document.querySelector('.scrollable-list');
@@ -49,6 +68,18 @@ export class ImageCarousel {
       } else {
         container.scrollLeft += scrollAmount;
       }
+    }
+  }
+
+  isHorizontalScrollAvailable() {
+    const element = document.getElementById('scrollableList');
+    console.log(element);
+    if (element) {
+      // Verificar si el scroll horizontal está disponible
+      return element.scrollWidth > element.clientWidth;
+    } else {
+      // El elemento con el ID especificado no se encontró en el DOM
+      return false;
     }
   }
 

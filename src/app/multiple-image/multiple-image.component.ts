@@ -6,7 +6,7 @@ import { Component,
   OnInit, 
   Output, 
   ViewChild } from '@angular/core';
-import { JsonService } from '../review.service';
+import { DataService } from '../review.service';
 
 @Component({
   selector: 'multipleImage',
@@ -28,15 +28,11 @@ export class MultipleImage implements OnInit {
   buttonLeft: boolean = true;
   buttonRight: boolean = false;
 
-
-  jsonData: any;/// ITS just test
-
-  constructor(private jsonService: JsonService) {}
+  constructor(private httpService: DataService) {}
 
   ngOnInit(): void {
     /// Delete JSON SERVICE IS JUST TEST
-    this.jsonService.getJsonData().subscribe((data) => {
-      this.jsonData = data;
+    this.httpService.getData().subscribe((data) => {
       console.log(data);
     });
     // Initialize the component and check for horizontal scrolling

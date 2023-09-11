@@ -10,7 +10,7 @@ import { Component,
 @Component({
   selector: 'multipleImage',
   exportAs: 'multipleImage',
-  templateUrl: './imultiple-image.component.html',
+  templateUrl: './multiple-image.component.html',
   styleUrls: ['./multiple-image.component.scss'],
 })
 export class MultipleImage implements OnInit {
@@ -84,7 +84,7 @@ export class MultipleImage implements OnInit {
     }
   }
 
-  openReviewModal() {
+  emitAccion() {
     this.callBack.emit('ALGOO');
   }
 }

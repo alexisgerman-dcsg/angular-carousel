@@ -9,7 +9,7 @@
   <div class="scrollable-list" #scrollableList>
     <ul>
       <li *ngFor="let image of images">
-        <img [src]="image" (click)="openReviewModal()" class="element" alt="Random first slide">
+        <img [src]="image" (click)="emitAccion()" class="element" alt="Random first slide">
       </li>
     </ul>
   </div>

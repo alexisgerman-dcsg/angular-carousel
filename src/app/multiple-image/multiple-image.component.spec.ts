@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MultipleImage } from './multiple-image.component';
 
-describe('ImageCarouselComponent', () => {
+describe('MultipleImageComponent', () => {
   let component: MultipleImage;
   let fixture: ComponentFixture<MultipleImage>;
 
@@ -9,6 +9,7 @@ describe('ImageCarouselComponent', () => {
     TestBed.configureTestingModule({
       declarations: [MultipleImage],
     });
+
     fixture = TestBed.createComponent(MultipleImage);
     component = fixture.componentInstance;
   });
@@ -16,9 +17,18 @@ describe('ImageCarouselComponent', () => {
   it('should create the component', () => {
     expect(component).toBeTruthy();
   });
-  // Add more tests for other component methods and behaviors as needed
 
-  afterEach(() => {
-    fixture.destroy();
+  it('should initialize buttonLeft and buttonRight to true', () => {
+    expect(component.buttonLeft).toBe(true);
+    expect(component.buttonRight).toBe(false);
   });
+
+  it('should emit "ALGOO" when emitAccion is called', () => {
+    let emittedValue: string | undefined;
+    component.callBack.subscribe((value) => (emittedValue = value));
+    component.emitAccion();
+    expect(emittedValue).toBe('ALGOO');
+  });
+
+  // You can add more tests for other methods and behaviors as needed
 });

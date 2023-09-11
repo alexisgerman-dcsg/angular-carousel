@@ -31,6 +31,8 @@
     flex: 1;
     overflow: hidden;
     white-space: nowrap;
+    scroll-behavior: smooth;
+    transition: scroll-behavior 0.3s;
 
     ul {
       list-style: none;

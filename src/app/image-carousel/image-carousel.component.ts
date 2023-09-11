@@ -7,11 +7,6 @@ import { Component,
   Output, 
   ViewChild } from '@angular/core';
 
-
-export interface CallbackType {
-  (data: string): void;
-}
-
 @Component({
   selector: 'imagecarousel',
   exportAs: 'imagecarousel',
@@ -21,7 +16,7 @@ export interface CallbackType {
 export class ImageCarousel implements OnInit {
   // EventEmitter for custom callback
   @Output() 
-  miCallback: EventEmitter<CallbackType> = new EventEmitter<CallbackType>();
+  callBack: EventEmitter<string> = new EventEmitter<string>();
   // Input property to provide an array of image URLs
   @Input() 
   images: string[] = [];
@@ -90,8 +85,6 @@ export class ImageCarousel implements OnInit {
   }
 
   openReviewModal() {
-    this.miCallback.emit((data: string) => {
-      // Callback function logic can be implemented here
-    });
+    this.callBack.emit('ALGOO');
   }
 }

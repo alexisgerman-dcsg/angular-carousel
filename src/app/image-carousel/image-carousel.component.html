@@ -1,6 +1,6 @@
 <div class="horizontal-scroll-container">
   <div [hidden]="buttonLeft">
-    <button mat-icon-button class="scroll-button" 
+    <button mat-icon-button class="scroll-button left" 
     (click)="scrollList('left')"
     >
       <mat-icon>chevron_left</mat-icon>
@@ -13,7 +13,7 @@
       </li>
     </ul>
   </div>
-  <div [hidden]="buttonRight">
+  <div [hidden]="buttonRight" class="right-button">
     <button mat-icon-button class="scroll-button" 
     (click)="scrollList('right')"
     >

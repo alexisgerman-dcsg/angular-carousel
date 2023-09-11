@@ -6,6 +6,7 @@ import { Component,
   OnInit, 
   Output, 
   ViewChild } from '@angular/core';
+import { DataService } from '../review.service';
 
 @Component({
   selector: 'multipleImage',
@@ -14,12 +15,20 @@ import { Component,
   styleUrls: ['./multiple-image.component.scss'],
 })
 export class MultipleImage implements OnInit {
+  
+  storedData: any;
+
+  constructor(private dataService: DataService) {
+    this.storedData = this.dataService.getDataResponse(); // Obtiene los datos almacenados en el servicio
+  }
+  
+  @Input() 
+  images: string[] = [];
   // EventEmitter for custom callback
   @Output() 
   callBack: EventEmitter<string> = new EventEmitter<string>();
   // Input property to provide an array of image URLs
-  @Input() 
-  images: string[] = [];
+
   // Reference to the scrollable list element in the template
   @ViewChild('scrollableList') scrollableList!: ElementRef;
  
@@ -30,6 +39,7 @@ export class MultipleImage implements OnInit {
   ngOnInit(): void {
     // Initialize the component and check for horizontal scrolling
     this.verificarScrollHorizontal();
+    
   }
 
   // Listen for window resize events and recheck for horizontal scrolling
@@ -83,6 +93,11 @@ export class MultipleImage implements OnInit {
   }
 
   emitAccion() {
+    console.log(this.storedData);
     this.callBack.emit('ALGOO');
+  }
+
+  receiveDataHandler($event) {
+    console.log($event)
   }
 }

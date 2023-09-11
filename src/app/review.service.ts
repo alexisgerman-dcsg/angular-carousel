@@ -7,8 +7,21 @@ import { Observable } from 'rxjs';
 })
 export class DataService {
   constructor(private http: HttpClient) {}
+  private responseData: any;
 
-  getData(): Observable<any> {
-    return this.http.get<any>('https://stg.api.bazaarvoice.com/data/reviews.json?apiversion=5.4&passkey=caB45h2jBqXFw1OE043qoMBD1gJC8EwFNCjktzgwncXY4&Filter=ProductId:data-gen-moppq9ekthfzbc6qff3bqokie&Include=Products&FilteredStats=Reviews&Filter=HasPhotos:eq:true'); 
+  // Método para realizar una solicitud GET a la API
+  getData(apiUrl: string): Observable<any> {
+    return this.http.get(apiUrl);
   }
+
+  // Método para establecer la respuesta de la API en el servicio
+  setData(data: any): void {
+    this.responseData = data;
+  }
+
+  // Método para obtener la respuesta de la API desde el servicio
+  getDataResponse(): any {
+    return this.responseData;
+  }
+  
 }

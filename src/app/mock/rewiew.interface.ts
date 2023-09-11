@@ -9,7 +9,7 @@ export interface Result {
   TotalResults: number
 }
 
-export interface Result {
+export interface Results {
 Id: string
 AdditionalFields?: Object
 AdditionalFieldsOrder: []

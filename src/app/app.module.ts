@@ -7,9 +7,15 @@ import { MatButtonModule, MatIconModule } from '@angular/material';
 import { AppComponent } from './app.component';
 
 import { MultipleImage } from './multiple-image/multiple-image.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  imports:      [ BrowserModule, BrowserAnimationsModule, FormsModule, MatButtonModule, MatIconModule ],
+  imports:      [ BrowserModule, 
+    BrowserAnimationsModule, 
+    FormsModule, 
+    MatButtonModule, 
+    MatIconModule,
+    HttpClientModule],
   declarations: [ AppComponent, MultipleImage ],
   bootstrap:    [ AppComponent ]
 })

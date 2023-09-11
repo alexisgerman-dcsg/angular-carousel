@@ -6,6 +6,7 @@ import { Component,
   OnInit, 
   Output, 
   ViewChild } from '@angular/core';
+import { JsonService } from '../review.service';
 
 @Component({
   selector: 'multipleImage',
@@ -26,10 +27,18 @@ export class MultipleImage implements OnInit {
   // Flags to control the visibility of left and right scroll buttons
   buttonLeft: boolean = true;
   buttonRight: boolean = false;
-  
-  constructor() {}
+
+
+  jsonData: any;/// ITS just test
+
+  constructor(private jsonService: JsonService) {}
 
   ngOnInit(): void {
+    /// Delete JSON SERVICE IS JUST TEST
+    this.jsonService.getJsonData().subscribe((data) => {
+      this.jsonData = data;
+      console.log(data);
+    });
     // Initialize the component and check for horizontal scrolling
     this.verificarScrollHorizontal();
   }

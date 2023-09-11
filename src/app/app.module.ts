@@ -8,15 +8,19 @@ import { AppComponent } from './app.component';
 
 import { MultipleImage } from './multiple-image/multiple-image.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DataService } from './review.service';
 
 @NgModule({
-  imports:      [ BrowserModule, 
-    BrowserAnimationsModule, 
-    FormsModule, 
-    MatButtonModule, 
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    MatButtonModule,
     MatIconModule,
-    HttpClientModule],
-  declarations: [ AppComponent, MultipleImage ],
-  bootstrap:    [ AppComponent ]
+    HttpClientModule,
+  ],
+  declarations: [AppComponent, MultipleImage],
+  bootstrap: [AppComponent],
+  providers: [DataService],
 })
-export class AppModule { }
+export class AppModule {}

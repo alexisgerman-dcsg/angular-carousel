@@ -19,7 +19,8 @@ export class MultipleImage implements OnInit {
   storedData: any;
 
   constructor(private dataService: DataService) {
-    this.storedData = this.dataService.getDataResponse(); // Obtiene los datos almacenados en el servicio
+    this.storedData = this.dataService.getDataResponse(); 
+    console.log(this.storedData)
   }
   
   @Input() 
@@ -39,7 +40,7 @@ export class MultipleImage implements OnInit {
   ngOnInit(): void {
     // Initialize the component and check for horizontal scrolling
     this.verificarScrollHorizontal();
-    
+
   }
 
   // Listen for window resize events and recheck for horizontal scrolling

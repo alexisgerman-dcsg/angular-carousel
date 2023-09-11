@@ -1,4 +1,11 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { Component, 
+  ElementRef, 
+  EventEmitter, 
+  HostListener, 
+  Input, 
+  OnInit, 
+  Output, 
+  ViewChild } from '@angular/core';
 
 
 export interface CallbackType {
@@ -6,7 +13,6 @@ export interface CallbackType {
 }
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'imagecarousel',
   exportAs: 'imagecarousel',
   templateUrl: './image-carousel.component.html',

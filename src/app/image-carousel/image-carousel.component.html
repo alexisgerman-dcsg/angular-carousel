@@ -1,5 +1,5 @@
 <div class="horizontal-scroll-container">
-  <div [hidden]="buttonLeft" class="left-button">
+  <div *ngIf="buttonLeft" class="position-button">
     <button mat-icon-button class="scroll-button left" 
     (click)="scrollList('left')"
     >
@@ -13,7 +13,7 @@
       </li>
     </ul>
   </div>
-  <div [hidden]="buttonRight" class="right-button">
+  <div  *ngIf="buttonRight" class="position-button right">
     <button mat-icon-button class="scroll-button" 
     (click)="scrollList('right')"
     >

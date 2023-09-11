@@ -1,4 +1,9 @@
-import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+
+
+export interface CallbackType {
+  (data: string): void;
+}
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -7,14 +12,22 @@ import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angu
   templateUrl: './image-carousel.component.html',
   styleUrls: ['./image-carousel.component.scss'],
 })
-export class ImageCarousel {
-  images = ['https://photos-uat-us.bazaarvoice.com/photo/2/cGhvdG86Y29uY2llcmdlYXBpZG9jdW1lbnRhdGlvbg/f918b4d7-4a7a-530a-8110-a79b23718ee0', 'https://photos-uat-us.bazaarvoice.com/photo/2/cGhvdG86Y29uY2llcmdlYXBpZG9jdW1lbnRhdGlvbg/be9256eb-24d7-5b03-b0ec-5c0b9232b3b5', 'https://photos-uat-us.bazaarvoice.com/photo/2/cGhvdG86Y29uY2llcmdlYXBpZG9jdW1lbnRhdGlvbg/f918b4d7-4a7a-530a-8110-a79b23718ee0', 'https://photos-uat-us.bazaarvoice.com/photo/2/cGhvdG86Y29uY2llcmdlYXBpZG9jdW1lbnRhdGlvbg/f918b4d7-4a7a-530a-8110-a79b23718ee0', 'https://photos-uat-us.bazaarvoice.com/photo/2/cGhvdG86Y29uY2llcmdlYXBpZG9jdW1lbnRhdGlvbg/f918b4d7-4a7a-530a-8110-a79b23718ee0']
-  
+export class ImageCarousel implements OnInit {
+
+  @Output() 
+  miCallback: EventEmitter<CallbackType> = new EventEmitter<CallbackType>();
+  @Input() 
+  images: string[] = [];
+  @ViewChild('scrollableList') scrollableList!: ElementRef;
+
   buttonLeft: boolean = true;
   buttonRight: boolean = false;
-  @ViewChild('scrollableList') scrollableList!: ElementRef;
   
   constructor() {}
+
+  ngOnInit(): void {
+    this.verificarScrollHorizontal();
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
@@ -23,38 +36,29 @@ export class ImageCarousel {
 
   ngAfterViewInit() {
     this.scrollableList.nativeElement.addEventListener('scroll', this.onScroll.bind(this));
+   
   }
 
   verificarScrollHorizontal() {
     const elemento = this.scrollableList.nativeElement;
     if (elemento.scrollWidth > elemento.clientWidth) {
-      console.log('SI hay scroll');
-      this.buttonLeft = true;
-      this.buttonRight = false;
-    } else {
-      console.log('no hay');
-      this.buttonLeft = true;
+      this.buttonLeft = false;
       this.buttonRight = true;
-    }
+      return;
+    } 
+    this.buttonLeft = false;
+    this.buttonRight = false;
   }
 
   onScroll(event: Event) {
     const scrollableList = event.target as HTMLElement;
-
-    // Si el scroll llega al principio
     if (scrollableList.scrollLeft === 0) {
-      this.buttonLeft = true;
-      this.buttonRight = false;
-      console.log('Estás en la posición inicial.');
-      // Puedes ejecutar acciones específicas aquí
-    }
-
-    // Si el scroll llega al final
-    if (scrollableList.scrollLeft + scrollableList.clientWidth >= scrollableList.scrollWidth) {
       this.buttonLeft = false;
       this.buttonRight = true;
-      console.log('Estás en la posición final.');
-      // Puedes ejecutar acciones específicas aquí
+    }
+    if (scrollableList.scrollLeft + scrollableList.clientWidth >= scrollableList.scrollWidth) {
+      this.buttonLeft = true;
+      this.buttonRight = false;
     }
   }
 
@@ -72,6 +76,8 @@ export class ImageCarousel {
   }
 
   openReviewModal() {
-    alert('Hellow')
+    this.miCallback.emit((data: string) => {
+      
+    });
   }
 }

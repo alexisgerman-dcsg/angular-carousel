@@ -9,7 +9,7 @@
     border: solid 1px gray;
   }
 
- .left-button {
+ .position-button {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -22,22 +22,10 @@
     justify-content: center;
     width: 15%;
   }
-
-  .right-button {
+  
+  .right {
     right: 0;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    z-index: 2;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    width: 15%;
   }
-
 
   .scrollable-list {
     flex: 1;

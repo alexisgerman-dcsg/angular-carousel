@@ -6,14 +6,11 @@ import { MatButtonModule, MatIconModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 
-import { CarouselComponent } from './carousel/carousel.component';
 import { ImageCarousel } from './image-carousel/image-carousel.component';
-import { CarouselItemDirective } from './carousel/carousel-item.directive';
-import { CarouselItemElementDirective } from './carousel/carousel-item-element.directive';
 
 @NgModule({
   imports:      [ BrowserModule, BrowserAnimationsModule, FormsModule, MatButtonModule, MatIconModule ],
-  declarations: [ AppComponent, CarouselComponent, ImageCarousel, CarouselItemDirective, CarouselItemElementDirective ],
+  declarations: [ AppComponent, ImageCarousel ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

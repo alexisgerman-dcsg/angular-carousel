@@ -25,9 +25,9 @@ IsFeatured: false
 IsRatingsOnly: false
 IsRecommended: true
 IsSyndicated: false
-ModerationStatus: "APPROVED"
+ModerationStatus: string
 Photos: Photo[]
-ProductId: "data-gen-moppq9ekthfzbc6qff3bqokie"
+ProductId: string
 ProductRecommendationIds: []
 Rating: 4
 RatingRange: 5

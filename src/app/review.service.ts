@@ -1,27 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  constructor(private http: HttpClient) {}
+  private apiUrl =
+    'https://stg.api.bazaarvoice.com/data/reviews.json?apiversion=5.4&passkey=caB45h2jBqXFw1OE043qoMBD1gJC8EwFNCjktzgwncXY4&Filter=ProductId:data-gen-moppq9ekthfzbc6qff3bqokie&Include=Products&FilteredStats=Reviews&Filter=HasPhotos:eq:true';
   private responseData: any;
+  constructor(private http: HttpClient) {}
 
-  // Método para realizar una solicitud GET a la API
-  getData(apiUrl: string): Observable<any> {
-    return this.http.get(apiUrl);
+  fetchData(): Observable<any> {
+    return this.http.get(this.apiUrl)
+      .pipe(
+        switchMap((response) => {
+          this.responseData = response;
+          return this.getResponseData();
+        })
+      );
   }
 
-  // Método para establecer la respuesta de la API en el servicio
-  setData(data: any): void {
-    this.responseData = data;
+  getResponseData(): Observable<any> {
+    return of(this.responseData);
   }
-
-  // Método para obtener la respuesta de la API desde el servicio
-  getDataResponse(): any {
-    return this.responseData;
-  }
-  
 }

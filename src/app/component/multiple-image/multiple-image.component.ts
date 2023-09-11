@@ -6,7 +6,6 @@ import { Component,
   OnInit, 
   Output, 
   ViewChild } from '@angular/core';
-import { DataService } from '../review.service';
 
 @Component({
   selector: 'multipleImage',
@@ -16,11 +15,12 @@ import { DataService } from '../review.service';
 })
 export class MultipleImage implements OnInit {
   
-  storedData: any;
+  responseData: any;
 
-  constructor(private dataService: DataService) {
-    this.storedData = this.dataService.getDataResponse(); 
-    console.log(this.storedData)
+  constructor() {}
+  
+  ngOnInit(): void {
+    this.verificarScrollHorizontal();
   }
   
   @Input() 
@@ -37,11 +37,6 @@ export class MultipleImage implements OnInit {
   buttonLeft: boolean = true;
   buttonRight: boolean = false;
 
-  ngOnInit(): void {
-    // Initialize the component and check for horizontal scrolling
-    this.verificarScrollHorizontal();
-
-  }
 
   // Listen for window resize events and recheck for horizontal scrolling
   @HostListener('window:resize', ['$event'])
@@ -94,7 +89,7 @@ export class MultipleImage implements OnInit {
   }
 
   emitAccion() {
-    console.log(this.storedData);
+    console.log(this.responseData);
     this.callBack.emit('ALGOO');
   }
 

@@ -28,9 +28,11 @@ export class ImageCarousel {
   verificarScrollHorizontal() {
     const elemento = this.scrollableList.nativeElement;
     if (elemento.scrollWidth > elemento.clientWidth) {
+      console.log('SI hay scroll');
       this.buttonLeft = true;
-      this.buttonRight = true;
+      this.buttonRight = false;
     } else {
+      console.log('no hay');
       this.buttonLeft = true;
       this.buttonRight = true;
     }
@@ -43,6 +45,7 @@ export class ImageCarousel {
     if (scrollableList.scrollLeft === 0) {
       this.buttonLeft = true;
       this.buttonRight = false;
+      console.log('Estás en la posición inicial.');
       // Puedes ejecutar acciones específicas aquí
     }
 

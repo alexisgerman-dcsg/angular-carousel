@@ -6,11 +6,11 @@ import { MatButtonModule, MatIconModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 
-import { ImageCarousel } from './image-carousel/image-carousel.component';
+import { MultipleImage } from './multiple-image/multiple-image.component';
 
 @NgModule({
   imports:      [ BrowserModule, BrowserAnimationsModule, FormsModule, MatButtonModule, MatIconModule ],
-  declarations: [ AppComponent, ImageCarousel ],
+  declarations: [ AppComponent, MultipleImage ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

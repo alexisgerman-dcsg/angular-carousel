@@ -8,12 +8,12 @@ import { Component,
   ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'imagecarousel',
-  exportAs: 'imagecarousel',
-  templateUrl: './image-carousel.component.html',
-  styleUrls: ['./image-carousel.component.scss'],
+  selector: 'multipleImage',
+  exportAs: 'multipleImage',
+  templateUrl: './imultiple-image.component.html',
+  styleUrls: ['./multiple-image.component.scss'],
 })
-export class ImageCarousel implements OnInit {
+export class MultipleImage implements OnInit {
   // EventEmitter for custom callback
   @Output() 
   callBack: EventEmitter<string> = new EventEmitter<string>();
